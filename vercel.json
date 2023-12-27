@@ -1,18 +1,19 @@
 {
-    "version":2,
-    "builds":[
-        {
-            "src":"run.py",
-            "use": "@vercel/python"
-        }
+    "version": 2,
+    "builds": [
+      {
+        "src": "vercel-build.sh",
+        "use": "@vercel/python"
+      }
     ],
-    "routes":[
-        {
-            "src":"/(.*)",
-            "dest":"/run.py"
-        }
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/vercel-path0/run.py"
+      }
     ],
-    "env":{
-        "FLASK_ENV":"production"
+    "env": {
+      "FLASK_ENV": "production"
     }
-}
+  }
+  
