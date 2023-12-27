@@ -1,0 +1,22 @@
+{% extends './base_template.html' %}
+
+{%block title%}
+{{data.titulo}}
+{%endblock%}
+
+{% block body %}
+
+<div class="container text-center align-items-center mt-4">
+    <title>{{ data.titulo }}</title>
+    <label class="letraGrande">
+        <p>500! Error interno del servidor</p>
+        <h4>Trata de volver a cargar la página o no dudes en contactar con nosotros si el problema persiste</h4>
+    </label>
+    <br>
+    <div class=" text-center mt-4">
+        <img src="{{ url_for('static', filename='img/error_500.jpg') }}" alt="Mi Imagen" class="img-error">
+    </div>
+
+</div>
+
+{% endblock %}

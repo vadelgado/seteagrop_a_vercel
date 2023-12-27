@@ -1,0 +1,21 @@
+{% extends './base_template.html' %}
+
+{%block title%}
+Error
+{%endblock%}
+{% block body %}
+
+<div class="container text-center align-items-center mt-4">
+    <title>Ha ocurrido un error</title>
+    <label class="letraGrande">
+        <p>Ha ocurrido un error </p>
+        <h4>Trata de volver a cargar la página o no dudes en contactar con nosotros si el problema persiste</h4>
+    </label>
+    <br>
+    <div class=" text-center mt-4">
+        <img src="{{ url_for('static', filename='img/errorGeneral.jpg') }}" alt="Mi Imagen" class="img-error">
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends './base_template.html' %}
+
+{% block title %}
+{{ data.titulo }}
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header letraMediana text-center">Crea una cuenta en nuestra tienda en línea</div>
+        <div class="card-body letraGrisMediana">
+            <form action="/auth/account" method="post" novalidate>
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                <p class=" requerido">
+                    * Campos obligatorios
+                </p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-3 my-4 letraGrisMediana">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                        <p class="letraGrisMediana">
+                            Información Personal
+                            <hr>
+                        </p>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-3">
+                                <label for="nombre" class="form-label mt-2 letraGrisNormal"><b>Nombres</b><b
+                                        class="requerido">*</b></label>
+                                {{ form.nombre(class="form-control", autocomplete='off') }}
+                                {% if form.nombre.errors %}
+                                {% for error in form.nombre.errors %}
+                                <label class="requerido">* {{ error }}</label>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-6 col-md-3">
+                                <label for="apellido" class="form-label mt-2 letraGrisNormal"><b>Apellidos</b><b
+                                        class="requerido">*</b></label>
+                                {{ form.apellido(class="form-control", autocomplete='off') }}
+                                {% if form.apellido.errors %}
+                                {% for error in form.apellido.errors %}
+                                <label class="requerido">* {{ error }}</label>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-3">
+                                <label for="correo" class="form-label mt-2 letraGrisNormal"><b>Tipo de documento</b><b
+                                        class="requerido">*</b></label>
+                                {{ form.tipo_identificacion(class="form-select") }}
+                            </div>
+                            <div class="col-lg-6 col-md-3">
+                                <label for="correo" class="form-label mt-2 letraGrisNormal"><b>Número de
+                                        identificación</b><b class="requerido">*</b></label>
+                                {{ form.identificacion(class="form-control", autocomplete='off', type='number', min='0',
+                                inputmode='numeric', pattern='[0-9]*') }}
+                                {% if form.identificacion.errors %}
+                                {% for error in form.identificacion.errors %}
+                                <label class="requerido">* {{ error }}</label>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-3 my-4 letraGrisMediana">
+                        <p class="letraGrisMediana">
+                            Información de inicio de sesión
+                            <hr>
+                        </p>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-6">
+                                <label for="correo" class="form-label mt-2 letraGrisNormal"><b>Correo electrónico</b><b
+                                        class="requerido">*</b></label>
+                                {{ form.correo(class="form-control", autocomplete='off') }}
+                                {% if form.correo.errors %}
+                                {% for error in form.correo.errors %}
+                                <label class="requerido">* {{ error }}</label>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-3">
+                                <label for="password" class="form-label mt-2 letraGrisNormal"><b>Contraseña</b><b
+                                        class="requerido">*</b></label>
+                                {{ form.password(class="form-control", autocomplete='off') }}
+                                {% if form.password.errors %}
+                                {% for error in form.password.errors %}
+                                <label class="requerido">* {{ error }}</label>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-6 col-md-3">
+                                <label for="correo" class="form-label mt-2 letraGrisNormal"><b>Confirmar
+                                        contraseña</b><b class="requerido">*</b></label>
+                                {{ form.confirmPassword(class="form-control") }}
+                                {% if form.confirmPassword.errors %}
+                                {% for error in form.confirmPassword.errors %}
+                                <label class="requerido">* {{ error }}</label>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="alert alert-info letraGris">
+                                 La contraseña debe tener mínimo 8 caracteres, un número,
+                                 una letra mayúscula, una letra minúscula y un caracter especial.
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end mt-4">
+                            <button class="btn botonCuatro" type="submit">Crear una cuenta</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

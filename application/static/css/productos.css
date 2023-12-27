@@ -1,0 +1,44 @@
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.product-info {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.add-to-cart {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.7);
+    transition: 0.4s;
+}
+
+.card:hover .add-to-cart {
+    visibility: visible;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.add-to-cart .product-quantity {
+    max-width: 60px;
+    text-align: center;
+}
+
+.add-to-cart .btn {
+    border-radius: 20px;
+}
+
+.letraPrecio{
+    color:#15af36;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.imagenProducto{
+    padding: 15px;
+}

@@ -1,0 +1,132 @@
+{% extends './base_template.html' %}
+
+{%block title%}
+{{data.titulo}}
+{%endblock%}
+
+{% block body %}
+
+<img src="{{ url_for('static', filename='img/nosotros2.png') }}" class="d-block w-100" alt="...">
+
+<div class="container  mt-4">
+    <div class="card">
+        <div class="card-header letraMediana text-center"> NUESTRA MISIÓN</div>
+        <div class="card-body letraGrisNormal">
+            En SeteAgrop nos comprometemos a mejorar la calidad de vida de las mascotas y animales de producción,
+            proporcionando productos agrícolas y veterinarios de la más alta calidad. Nos esforzamos por ser líderes
+            en la industria, ofreciendo soluciones integrales que promuevan la salud, el bienestar y la felicidad de
+            nuestros clientes peludos y emplumados. A través de un enfoque centrado en el cliente, la innovación y
+            a ética empresarial, buscamos fortalecer los vínculos entre humanos y animales, contribuyendo así a una
+            sociedad más armoniosa.
+        </div>
+    </div>
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade mt-2" data-bs-ride="carousel"
+        data-bs-interval="5000" data-bs-pause="hover">
+        <div class="carousel-indicators ">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active text-center">
+                <img src="{{ url_for('static', filename='img/nosotros3.jpg') }}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block mt-4">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='img/nosotros4.jpg') }}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="card mt-4">
+        <div class="card-header letraMediana text-center"> NUESTRA VISIÓN</div>
+        <div class="card-body letraGrisNormal">
+            En SeteAgrop, visualizamos un futuro donde cada mascota y animal de producción disfrute de una vida plena y
+            saludable, respaldada por productos y servicios de primera calidad. Aspiramos a ser reconocidos como la
+            empresa
+            líder en el mercado agro-veterinario, destacando por nuestra excelencia en la oferta de alimentos
+            balanceados,
+            servicios de peluquería y atención veterinaria. Buscamos expandir nuestra presencia de manera sostenible,
+            manteniendo la integridad de nuestros valores fundamentales y contribuyendo al bienestar animal en todo el
+            país.
+        </div>
+    </div>
+
+    <div class="mt-4 text-center  justify-content-center align-items-center">
+        <div class="row  ">
+            <div class="col-lg-6 col-md-3 text-center">
+                <img src="{{ url_for('static', filename='img/ganaderia.jpg') }}" class="imagen-redonda " alt="...">
+            </div>
+            <div class="col-lg-6 col-md-3">
+                <img src="{{ url_for('static', filename='img/cerdos.jpg') }}" class=" imagen-redonda" alt="...">
+            </div>
+        </div>
+        <div class="row mt-4 ">
+            <div class="col-lg-6 col-md-3">
+                <img src="{{ url_for('static', filename='img/peces.jpg') }}" class=" imagen-redonda" alt="...">
+            </div>
+            <div class="col-lg-6 col-md-3">
+                <img src="{{ url_for('static', filename='img/pollos.jpg') }}" class=" imagen-redonda" alt="...">
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="card mt-4">
+        <div class="card-header letraMediana text-center"> NUESTRAS INSTALACIONES</div>
+        <div class="card-body letraGrisNormal">
+            <p>
+                En SeteAgrop, nos enorgullece contar con instalaciones modernas y adaptadas para satisfacer las
+                necesidades
+                de nuestros clientes y pacientes peludos. Nuestras instalaciones están diseñadas pensando en la
+                comodidad,
+                seguridad y bienestar tanto de las mascotas como de sus dueños. Destacamos los siguientes aspectos de
+                nuestras instalaciones:
+                <br><br>
+                <label class="letraPeque"><i class="fas fa-paw pe-3"></i>&nbsp; Áreas Especializadas:</label>
+                Contamos con espacios dedicados para cada uno de nuestros servicios, incluyendo áreas específicas para
+                la
+                venta de alimentos para mascotas, secciones especializadas para la peluquería canina y felina, así como
+                consultorios veterinarios equipados con la última tecnología para brindar una atención médica de
+                calidad.
+                <br><br>
+                <label class="letraPeque"> <i class="fas fa-paw pe-3"></i>&nbsp;Almacén de Productos:</label>
+    
+                Disponemos de un amplio almacén que garantiza un suministro constante de productos agrícolas y
+                veterinarios,
+                asegurando la disponibilidad de alimentos balanceados para diversas especies animales.
+                <br><br>
+                <label class="letraPeque"><i class="fas fa-paw pe-3"></i>&nbsp;Compromiso con la Higiene:</label>
+    
+                Mantenemos altos estándares de limpieza e higiene en todas nuestras instalaciones, asegurando un entorno
+                saludable para las mascotas y cumpliendo con normativas sanitarias.
+            </p>
+        </div>
+    </div>
+    <div class="mt-4 container text-center">
+        <img src="{{ url_for('static', filename='img/nosotros5.jpg') }}" class="imagen-redonda" alt="...">
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

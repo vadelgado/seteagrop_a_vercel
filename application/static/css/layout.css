@@ -1,0 +1,119 @@
+
+
+.placeholder-styling input::placeholder {
+    color: #ff0000; /* Color del texto del placeholder */
+    font-style: italic; /* Estilo de fuente del placeholder */
+    font-weight: bold; /* Puedes ajustar el peso de la fuente según tus preferencias */
+}
+
+.img-responsiva {
+    max-width: 50%;
+    height: auto;
+  }
+
+.img-responsivaFooter {
+    max-width: 98%;
+    height: auto;
+  }
+
+body{
+    background-color:  #e6ecea ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.navBarColor{
+    background-color: whitesmoke;
+}
+
+.footerColor{
+    background-color: #0f5f1f;
+}
+
+.colorLetra{
+    color: #0f5f1f ;
+    font-size: 16px;
+}
+
+.colorLetra:hover {
+    color: #0d501a; /* Cambia el color al pasar el mouse por encima */
+}
+
+.navbar-brand {
+    position: relative;
+}
+
+.navbar-brand:hover {
+    background-color: #f5f5f5; /* Color de fondo cuando se pasa el mouse */
+}
+
+
+.navbar-brand:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px; /* Grosor de la línea de subrayado */
+    background-color: #0f5f1f; /* Color de la línea de subrayado */
+    transform: scaleX(0); /* Inicialmente, la línea de subrayado tiene una escala de 0 (invisible) */
+    transform-origin: 50%;
+    transition: transform 0.3s; /* Transición para animar el subrayado */
+}
+
+.navbar-brand:hover:after {
+    transform: scaleX(1); /* Muestra la línea de subrayado al pasar el mouse */
+}
+
+
+.logoFooter{
+    background-color: whitesmoke;
+    width: 200px; /* Definir el ancho del div */
+    height: 200px; /* Definir el alto del div */
+    background-color: whitesmoke; /* Color de fondo, puedes cambiarlo */
+    border-radius: 50%; /* Hace que el div sea redondo */
+    text-align: center;
+    line-height: 200px; /* Para centrar el contenido verticalmente */
+}
+
+.letraFooter{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+}
+
+.sinLinea {
+    text-decoration: none;
+    color: whitesmoke;
+  }
+  
+.sinLinea:hover {
+    text-decoration: none;
+    color:  #DA8136   ;
+    font-weight: bold;
+  }
+
+  .whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366; /* Color de fondo de WhatsApp */
+    color: #fff;
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: 20px;
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  }
+
+
+.navbarPosition {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
+}
+
+/* Estilo para el contenido con margen superior */
+.content {
+    margin-top: 130px; 
+}

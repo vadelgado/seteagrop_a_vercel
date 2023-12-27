@@ -1,0 +1,128 @@
+{% extends './base_template.html' %}
+
+{%block title%}
+{{data.titulo}}
+{%endblock%}
+
+{% block body %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-12">
+            <div>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </div>
+            {% if 'cart_item' in session %}
+            <h1 class="text-center  letraExtraGrande">Productos en tu carrito</h1>
+            <p><a id="btnEmpty" href="{{ url_for('carrito.empty_cart') }}" class="btn btn-danger">Vaciar Carrito 😢</a>
+            </p>
+
+            <div class="table-responsive mt-4">
+                <table class="table table-hover table-striped letraPeque">
+                    <thead>
+                        <tr>
+                            <th class=" text-center letraPeque" style="color:#129e31">Productos</th>
+                            <th class="text-center letraPeque" style="color:#129e31">Cantidades</th>
+                            <th class="text-center letraPeque" style="color:#129e31">Valor Unidad</th>
+                            <th class="text-center letraPeque" style="color:#129e31">Precio</th>
+                            <th class="text-center letraPeque" style="color:#129e31">Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, val in session['cart_item'].items() %}
+                        {% set quantity = session['cart_item'][key]['quantity'] %}
+                        {% set price = session['cart_item'][key]['price']|float %}
+                        {% set item_price = session['cart_item'][key]['total_price']|float %}
+                        <tr>
+                            <td class="col-sm-7 col-md-7">
+                                <div class="media">
+                                    <a class="thumbnail pull-left" href="#"> <img class="media-object"
+                                            src="/static/imagenes_productos/{{ session['cart_item'][key]['image'] }}"
+                                            style="width: 72px; height: 72px;"> </a>
+                                    &nbsp;
+                                    <div class="media-body" style="padding-left:10px;">
+                                        <h4 class="media-heading letraGrisMediana"> &nbsp;&nbsp;{{
+                                            session['cart_item'][key]['name']}}</h4>
+                                        <!-- <h5 class="media-heading"> by Brand name</h5> -->
+                                        <!-- <span>Status: </span><span class="text-success"><strong>In Stock</strong></span> -->
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-sm-2 col-md-2 media-body text-center" style="padding-left: 10px;">
+                                <form class="form-inline" method="POST" action="{{ url_for('carrito.update_quantity', code=session['cart_item'][key]['code']) }}">
+                                  <div class="input-group">
+                                    <input class="form-control form-control-sm" type="number" name="new_quantity" value="{{ quantity|int  }}" min="1"required>
+                                    <div class="input-group-append">
+                                      <button type="submit" class="btn botonCuatro btn-sm">Actualizar</button>
+                                    </div>
+                                  </div>
+                                </form>
+                            </td>                           
+                            
+                            <td class="col-sm-1 col-md-1 text-center letraGrisMediana"><strong>${{
+                                    "{:,.2f}".format(price) }} </strong></td>
+                            <td class="col-sm-1 col-md-1 text-center letraGrisMediana"><strong>${{
+                                    "{:,.2f}".format(item_price) }}</strong></td>
+                            <td class="col-sm-1 col-md-1">
+                                <a href="{{ url_for('carrito.delete_product', code=session['cart_item'][key]['code']) }}"
+                                    class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove"></span> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="4">
+                                <h5 class="letraPeque">Cantidad Total:</h5>
+                            </td>
+                            <td class="text-right">
+                                <h5><strong class="letraPeque">{{ "{:,.0f}".format(session['all_total_quantity']) }}</strong></h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <h3 class="letraNormalVerde">Total</h3>
+                            </td>
+                            <td colspan="2" class="text-right">
+                                <h3><strong class="letraNormalVerde">$ {{ "{:,.2f}".format(session['all_total_price']) }}</strong></h3>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class=" text-center p-4 ">
+                <a href="{{ url_for('bienvenida.index') }}" class="btn botonTres">
+                    <span class="fas fa-shopping-cart"></span> Continuar Comprando
+                </a>
+                <a href="{{ url_for('carrito.checkout') }}" class="btn botonCuatro"><i class="fas fa-dollar-sign"></i> &nbsp;Finalizar compra</a>
+            </div>
+            {% else: %}
+            <div class="container text-center align-items-center mt-4">
+                <label class="letraGrande">
+                    Tu Carrito esta vacio
+                </label>
+                <br>
+                <div class=" text-center mt-2">
+                    <img src="{{ url_for('static', filename='img/carrito.jfif') }}" alt="Mi Imagen" class="img-error">
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends './base_template.html' %}
+
+{% block title %}
+{{ data.titulo }}
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header letraMediana text-center">{{ data.titulo }}</div>
+        <div class="card-body">
+            <form action="/servicios/peluqueria" method="POST" novalidate>
+                {{ form.csrf_token }}
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="nombre_dueno" class="form-label letraGrisNormal">
+                            <b>{{ form.nombre_dueno.label() }}</b><b class="text-danger"></b>
+                        </label>
+                        <input type="text" class="form-control" id="nombre_dueno" name="nombre_dueno" value="{{ nombre_usuario }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="nombre_mascota" class="form-label letraGrisNormal"><b>{{
+                                form.nombre_mascota.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.nombre_mascota(class="form-control placeholder-styling", placeholder="Ingrese el nombre de la mascota") }}
+                        {% if form.nombre_mascota.errors %}
+                        {% for error in form.nombre_mascota.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="raza_mascota" class="form-label letraGrisNormal"><b>{{
+                                form.raza_mascota.label() }}</b></label>
+                        {{ form.raza_mascota(class="form-control", placeholder="Ingrese la raza de la mascota") }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="edad_mascota" class="form-label letraGrisNormal"><b>{{
+                                form.edad_mascota.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.edad_mascota(class="form-control", placeholder="Ingrese la edad de la mascota Meses o Años"
+                        ) }}
+                        {% if form.edad_mascota.errors %}
+                        {% for error in form.edad_mascota.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="servicio_solicitado" class="form-label letraGrisNormal"><b>
+                                {{ form.servicio_solicitado.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.servicio_solicitado(class_="form-select colors") }}
+                        {% if form.servicio_solicitado.errors %}
+                        {% for error in form.servicio_solicitado.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fecha_cita" class="form-label letraGrisNormal"><b>
+                                {{ form.fecha_cita.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.fecha_cita(class_="form-control", type="date" )}}
+                        {% if form.fecha_cita.errors %}
+                        {% for error in form.fecha_cita.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="hora_cita" class="form-label letraGrisNormal"><b>
+                                {{ form.hora_cita.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.hora_cita(class_="form-select") }}
+                        {% if form.hora_cita.errors %}
+                        {% for error in form.hora_cita.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="numero_dueno" class="form-label letraGrisNormal"><b>
+                                {{ form.numero_dueno.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.numero_dueno(class_="form-control", placeholder="Ingrese Número Telefónico ",
+                        type="number") }}
+                        {% if form.numero_dueno.errors %}
+                        {% for error in form.numero_dueno.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="observaciones" class="form-label letraGrisNormal"><b>
+                                {{ form.observaciones.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.observaciones(class_="form-control", placeholder="Mencione Cuidados especiales ! 😘",
+                        type="textarea") }}
+                        {% if form.observaciones.errors %}
+                        {% for error in form.observaciones.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-start mt-4">
+                    {{ form.submit(class_="btn botonCuatro") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

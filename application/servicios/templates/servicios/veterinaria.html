@@ -1,0 +1,147 @@
+{% extends './base_template.html' %}
+
+{% block title %}
+{{ data.titulo }}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header letraMediana text-center">{{ data.titulo }}</div>
+        <div class="card-body">
+            <form action="/servicios/veterinaria" method="POST" novalidate>
+                {{ form.csrf_token }}
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="nombre_dueno" class="form-label letraGrisNormal">
+                            <b>{{ form.nombre_dueno.label() }}</b><b class="text-danger"></b>
+                        </label>
+                        <input type="text" class="form-control" id="nombre_dueno" name="nombre_dueno" value="{{ nombre_usuario }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="telefono_dueno" class="form-label letraGrisNormal"><b>{{
+                                form.telefono_dueno.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.telefono_dueno(class="form-control", placeholder="Ingrese el teléfono del dueño",
+                        type='number') }}
+                        {% if form.telefono_dueno.errors %}
+                        {% for error in form.telefono_dueno.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="correo_dueno" class="form-label letraGrisNormal">
+                            <b>{{ form.correo_dueno.label() }}</b><b class="text-danger"></b>
+                        </label>
+                        <input type="text" class="form-control" id="correo_dueno" name="correo_dueno" value="{{ correo_usuario }}" readonly>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="nombre_mascota" class="form-label letraGrisNormal"><b>{{
+                                form.nombre_mascota.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.nombre_mascota(class="form-control", placeholder="Ingrese el nombre de la mascota") }}
+                        {% if form.nombre_mascota.errors %}
+                        {% for error in form.nombre_mascota.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="especie_mascota" class="form-label letraGrisNormal"><b>
+                                {{ form.especie_mascota.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.especie_mascota(class_="form-select", placeholder="Ingrese la especie de la mascota")
+                        }} 
+                        {% if form.especie_mascota.errors %}
+                        {% for error in form.especie_mascota.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+
+                    </div>
+                    <div class="col-md-4">
+                        <label for="raza_mascota" class="form-label letraGrisNormal"><b>
+                                {{ form.raza_mascota.label() }}</b></label>
+                        {{ form.raza_mascota(class_="form-control", placeholder="Ingrese la raza de la mascota") }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="edad_mascota" class="form-label letraGrisNormal"><b>
+                                {{ form.edad_mascota.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.edad_mascota(class_="form-control", placeholder="Ingrese la edad de la mascota Meses o Años") }}
+                        {% if form.edad_mascota.errors %}
+                        {% for error in form.edad_mascota.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="peso_mascota" class="form-label letraGrisNormal"><b>
+                                {{ form.peso_mascota.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.peso_mascota(class_="form-control", placeholder="Ingrese el peso de la mascota",
+                        type="text") }}
+                        {% if form.peso_mascota.errors %}
+                        {% for error in form.peso_mascota.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sexo_mascota" class="form-label letraGrisNormal"><b>
+                                {{ form.sexo_mascota.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.sexo_mascota(class_="form-select", placeholder="Ingrese el sexo de la mascota") }}
+                        {% if form.sexo_mascota.errors %}
+                        {% for error in form.sexo_mascota.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="fecha_cita" class="form-label letraGrisNormal"><b>
+                                {{ form.fecha_cita.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.fecha_cita(class_="form-control", placeholder="Ingrese la fecha de la cita",
+                        type="date") }}
+                        {% if form.fecha_cita.errors %}
+                        {% for error in form.fecha_cita.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="hora_cita" class="form-label letraGrisNormal"><b>
+                                {{ form.hora_cita.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.hora_cita(class_="form-select", placeholder="Ingrese la hora de la cita") }}
+                        {% if form.hora_cita.errors %}
+                        {% for error in form.hora_cita.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="razon_cita" class="form-label letraGrisNormal"><b>
+                                {{ form.razon_cita.label() }}</b> <b class="text-danger">*</b></label>
+                        {{ form.razon_cita(class_="form-control", placeholder="Ingrese la razón de la cita") }}
+                        {% if form.razon_cita.errors %}
+                        {% for error in form.razon_cita.errors %}
+                        <label class="text-danger">* {{ error }}</label>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start mt-4">
+                    {{ form.submit(class_="btn botonCuatro") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

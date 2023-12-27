@@ -1,0 +1,42 @@
+{% extends './base_template.html' %}
+
+{%block title%}
+{{data.titulo}}
+{%endblock%}
+
+{% block body %}
+
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header letraMediana">
+            <div class="row">
+                <div class="text-left col-lg-6">
+                    Tu cuenta
+                </div>
+            </div>
+        </div>
+        <div class="card-body letraGrisMediana">
+            Información de tu cuenta
+            <hr>
+            <div class="row">
+                <div class="col-lg-6 col-md-3 my-2 ">
+                    <b>Datos Personales</b>
+                    <p class="letraGris mt-2">
+                        {{current_user.nombre}}
+                        {{current_user.apellido}}
+                        <br>
+                        {{current_user.correo}}
+                    </p>
+                </div>
+                <div class="col-lg-6 col-md-3 my-4 letraGrisMediana">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

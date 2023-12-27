@@ -1,0 +1,96 @@
+{% extends './base_template.html' %}
+
+{% block title %}
+    {{ data.titulo }}
+{% endblock %}
+
+{% block body %}
+    {% block head %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://js.stripe.com/v3/"></script>
+
+    {% endblock %}
+    
+    <div class="container">
+        <h1 class="text-center letraGrande">{{ data.titulo }}</h1>
+        
+        <p class="letraGrisMediana">
+            <b>Cliente:</b> {{current_user.nombre}} <br><br>
+            <b>Productos a comprar</b>
+        </p>
+
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th scope="col" class="letraPeque" style="text-align: center; color:#129e31 ">Foto</th>
+                    <th scope="col" class="letraPeque" style="text-align: center; color:#129e31 ">Nombre Producto</th>
+                    <th scope="col" class="letraPeque" style="text-align: center; color:#129e31 ">Descripción Producto</th>
+                    <th scope="col" class="letraPeque" style="text-align: center; color:#129e31 ">Cantidad</th>
+                    <th scope="col" class="letraPeque" style="text-align: center; color:#129e31 ">Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data.cart_items %}
+                    {% for key, item in data.cart_items.items() %}
+                        <tr>
+                            <td  style="text-align: center;"><img src="{{ url_for('static', filename='imagenes_productos/' + item['image']) }}" width="100px"></td>
+                            <td class="letraGrisMediana" style="text-align: center;">{{ item['name'] }}</td>
+                            <td class="letraGrisMediana" style="text-align: center;">{{ item['description'] }}</td>
+                            <td class="letraGrisMediana" style="text-align: center;">{{ item['quantity']|int }}</td>
+                            <td class="letraGrisMediana" style="text-align: center;">{{ '%.2f' % data.total_price|float }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4" style="text-align: center;">Tu Carrito esta Vacio!.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p class="font-weight-bold letraGrisMediana" style="font-size: 20px;">Total Productos: {{ data.total_quantity|int }}</p>
+                <p class="font-weight-bold letraGrisMediana" style="font-size: 20px;">Total A pagar: ${{ '%.2f' % data.total_price|float }}</p>
+            </div>
+            <div class="col-md-6 mt-2">
+                <form method="POST" action="{{ url_for('carrito.checkout') }}" id="payment-form">
+                    <div id="card-element" class="form-group">
+                        <!-- A Stripe Element will be inserted here. -->
+
+                    </div>
+                    <!-- Utiliza este campo para almacenar el token de pago -->
+                    <input type="hidden" name="stripeToken" id="stripeToken">
+                    <br>
+                    <button type="submit" class="btn botonCuatro mt-4" id="submit-button">Finalizar Compra</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var stripe = Stripe('pk_test_51OKAeUJeE04wtf7VdSYu53wm4SrjuRMkmuWR8w36TAHcN7pGDYEMZB4LymqDznjzpKyWQXu6qvzo6t6tdy9XX4cZ00qJF9pgBB');
+        var elements = stripe.elements();
+    
+        var card = elements.create('card');
+        card.mount('#card-element');
+    
+        var form = document.getElementById('payment-form');
+    
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+    
+            stripe.createToken(card).then(function (result) {
+                if (result.error) {
+                    // Manejar errores de creación de token
+                    console.error(result.error.message);
+                } else {
+                    // Adjuntar el token a la forma y enviarla
+                    document.getElementById('stripeToken').value = result.token.id;
+                    form.submit();
+                }
+            });
+        });
+    </script>
+    
+{% endblock %}
+

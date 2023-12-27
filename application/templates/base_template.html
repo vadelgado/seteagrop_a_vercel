@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%} {%endblock%} </title>
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Font-Awesome ICONOS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navBarColor navbarPosition" style="height: 120px;">
+        <div class="p-1 ml-2">
+            <a href="/">
+                <img src="{{ url_for('static', filename='img/logo1.1.png') }}" alt="Mi Imagen" class="img-responsiva">
+            </a>
+        </div>
+
+        <div id="google_translate_element" class="google"></div>
+        
+        <div class="container">
+            <a class="navbar-brand colorLetra" href="/perros">
+                <img src="{{ url_for('static', filename='img/perro.png') }}" alt="Mi Imagen">
+                Perros
+            </a>
+            <a class=" navbar-brand colorLetra" href="/gatos">
+                <img src="{{ url_for('static', filename='img/gato.png') }}" alt="Mi Imagen">
+                Gatos
+            </a>
+            <a class=" navbar-brand colorLetra" href="/ganaderia">
+                <img src="{{ url_for('static', filename='img/ganado.png') }}" alt="Mi Imagen">
+                Ganadería
+            </a>
+            <a class=" navbar-brand colorLetra" href="{{ url_for('servicios.peluqueria', next='/servicios/peluqueria') }}">
+                <img src="{{ url_for('static', filename='img/peluqueria.png') }}" alt="Mi Imagen">
+                Peluquería
+            </a>
+            <a class=" navbar-brand colorLetra" href="/servicios/veterinaria">
+                <img src="{{ url_for('static', filename='img/veterinaria.png') }}" alt="Mi Imagen">
+                Veterinaria
+            </a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if current_user.is_authenticated %}
+                <li class=" dropdown navbar-brand colorLetra">
+                    <a class="nav-link colorLetra dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="{{ url_for('static', filename='img/huella.png') }}" alt="Mi Imagen">
+                        {{current_user.nombre}}
+                    </a>
+                    <ul class="dropdown-menu text-center">
+                        <li><a class="btn botonTres text-center" href="{{ url_for('auth.logged') }}">Ver Perfil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="btn botonCuatro text-center" href="{{ url_for('auth.logout') }}">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class=" dropdown navbar-brand colorLetra">
+                    <a class="nav-link colorLetra dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="{{ url_for('static', filename='img/huella.png') }}" alt="Mi Imagen">
+                        Tu cuenta
+                    </a>
+                    <ul class="dropdown-menu text-center">
+                        <li><a class="btn botonTres text-center" href="{{ url_for('auth.login', next='/auth/logged') }}">Ingresar</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <p class="letraGris"> ¿Eres nuevo?</p>
+                        <li><a class="btn botonCuatro text-center" href="{{ url_for('auth.account') }}">Crea una
+                                cuenta</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+            <a class=" navbar-brand colorLetra" href="{{ url_for('carrito.cart', next='/cart') }}">
+                {% if 'cart_item' in session %}
+                <span class="circle">
+                    {{ "{:,.0f}".format(session['all_total_quantity']) }}
+                </span>
+                {% endif %}
+                <img src="{{ url_for('static', filename='img/carrito.png') }}" alt="Mi Imagen">
+                Tu Compra
+            </a>
+        </div>
+    </nav>
+    <div class="content">
+        {%block body%}
+        {%endblock%}
+    </div>
+  
+    <a href="https://api.whatsapp.com/send?phone=593995215896&text=Hola%20me%20gustaria%20realizar%20una%20compra"
+        class="whatsapp-button" target="_blank">
+        <img src="{{ url_for('static', filename='img/whatsApp.png') }}" alt="WhatsApp">
+    </a>
+</body>
+<div class="my-2 mt-4">
+    <footer class="navBarColor text-center text-lg-start footerColor text-white">
+        <!-- Grid container -->
+        <div class="container p-2">
+            <!--Grid row-->
+            <div class="row my-4 letraFooter">
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0 logoFooter">
+                    <img src="{{ url_for('static', filename='img/logo1.1.png') }}" alt="Mi Imagen"
+                        class="img-responsivaFooter">
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0" style="margin-left: 30px;">
+                    <h5 class="text-uppercase mb-4 text-left letraFooter"> <b>seteagrop s.a</b></h5>
+
+                    <ul class="list-unstyled ml-4 pl-4">
+                        <li class="mb-2">
+                            <a href="/" class=" sinLinea"><i class="fas fa-paw pe-3"></i> &nbsp; Inicio</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="/nosotros" class="sinLinea"><i class="fas fa-paw pe-3"></i>
+                                &nbsp;&nbsp;Nosotros</a>
+                        </li>
+                    </ul>
+                    <h5 class="text-uppercase mb-4 text-left letraFooter"><b>Servicios</b></h5>
+
+                    <ul class="list-unstyled  ml-4 pl-4">
+                        <li class="mb-2">
+                            <a href="/servicios/veterinaria" class="sinLinea"><i
+                                    class="fas fa-paw pe-3"></i>&nbsp;&nbsp;Veterinaria</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="/servicios/peluqueria" class="sinLinea"><i
+                                    class="fas fa-paw pe-3"></i>&nbsp;&nbsp;Peluquería</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0  text-left">
+                    <h5 class="text-uppercase mb-4 text-center letraFooter"> <b>Mascotas y animales de
+                            granja</b></h5>
+
+                    <ul class="list-unstyled  ml-4 pl-4">
+                        <li class="mb-2">
+                            <a href="/perros" class="sinLinea"><i class="fas fa-paw pe-3"></i>&nbsp;&nbsp;Perros</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="/gatos" class="sinLinea"><i class="fas fa-paw pe-3"></i>&nbsp;&nbsp;Gatos</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="/ganaderia" class="sinLinea"><i
+                                    class="fas fa-paw pe-3"></i>&nbsp;&nbsp;Ganadería</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-left">
+                    <h5 class="text-uppercase mb-4 text-center"><b>Contacto</b></h5>
+
+                    <ul class="list-unstyled  ml-4 pl-4">
+                        <li>
+                            <p><a href="https://www.google.com/maps/dir//J,+J.+Olmedo+Tulc%C3%A1n+Ecuador/@0.8123865,-77.716173,19.96z/data=!4m8!4m7!1m0!1m5!1m1!1s0x8e2968ce1850540f:0x1ff35bfe95dd8d2b!2m2!1d-77.716007!2d0.8123852?entry=ttu"
+                                    class="sinLinea" target="_blank">
+                                    <i class="fas fa-map-marker-alt pe-2"></i> &nbsp;&nbsp;Olmedo y 9 de octubre, Tulcán
+                                    - Carchi - Ecuador</p>
+                            </a>
+
+                        </li>
+                        <li>
+                            <p><i class="fas fa-phone pe-2"></i> &nbsp;&nbsp;062960051</p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-envelope pe-2 mb-0"></i> &nbsp;&nbsp; ventas@seteagrop.com
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2023 Copyright: Seminario Computación e Informática II
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+</div>
+<!-- End of .container -->
+
+<!--Start Traslate-->
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+    </script>
+    
+    <script type="text/javascript" async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!--End Traslate-->
+
+<script src=" https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+<!--Custom JS-->
+<script src="{{ url_for('static', filename='js/layout.js') }}"></script>
+
+
+</html>

@@ -1,0 +1,199 @@
+/* BOTONES */
+input::placeholder {
+    color: #ff0000; /* Color del texto del placeholder */
+    font-style: italic; /* Estilo de fuente del placeholder */
+    font-weight: bold; /* Puedes ajustar el peso de la fuente según tus preferencias */
+}
+
+.botonUno{
+    background-color: #DA8136;
+    color: whitesmoke;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.botonUno:hover{
+    background-color:  #783407 ;
+}
+
+.botonDos{
+    background-color: #129e31;
+    color: whitesmoke;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.botonDos:hover{
+    background-color:  #0f601e  ;
+}
+
+
+.botonTres{
+    background-color: #DA8136;
+    color: whitesmoke;
+    font-size: 16px;
+}
+
+.botonTres:hover{
+    background-color:  #783407 ;
+    color: whitesmoke;
+}
+
+.botonCuatro{
+    background-color: #129e31;
+    color: whitesmoke;
+    font-size: 16px;
+}
+
+.botonCuatro:hover{
+    background-color:  #0f601e;
+    color: whitesmoke;
+}
+
+.botonPag{
+    background-color:#0f601e ;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-left: 5px;
+}
+
+.botonPag:hover{
+    background-color:  #5CC45C;
+    color: whitesmoke;    
+}
+
+.seleccionado{
+    background-color: #DA8136;
+    color: white;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-left: 5px;
+}
+
+.seleccionado:hover{
+    background-color: #DA8136;
+    color: white;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-left: 5px;
+}
+
+.circle {
+    display: inline-block;
+    width: 30px; 
+    height: 30px; 
+    background-color: whitesmoke; 
+    border-radius: 50%; 
+    border: 2px solid #DA8136;
+    color: #c0651a;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* TIPOS DE LETRAS */
+.letraExtraGrande{
+    color: #129e31;
+    font-size: 35px;
+    font-weight:bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.letraExtraGrande:hover{
+    color: #107726;
+    font-size: 35px;
+    font-weight:bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.letraGris{
+    color: rgb(128, 133, 128);
+    font-size: 13px;
+    font-weight:200;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.letraGrisNormal{
+    color: rgb(128, 133, 128);
+    font-size: 15px;
+    font-weight:200;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.letraGrisMediana{
+    color: rgb(94, 97, 94);
+    font-size: 17px;
+    font-weight:300;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.letraGrande{
+    color: #129e31;
+    font-size: 30px;
+    font-weight:bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.letraMediana{
+    color: #129e31;
+    font-size: 24px;
+    font-weight:bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.letraNormalVerde{
+    color: #129e31;
+    font-size: 19px;
+    font-weight:bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.letraPeque{
+    color:  #DA8136;
+    font-size: 18px;
+    font-weight:400;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.letraMini{
+    color:  #DA8136;
+    font-size: 14px;
+    font-weight:400;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.letraMini:hover{
+    color:  #c0651a;
+    font-size: 14px;
+    font-weight:400;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.requerido{
+    color: rgb(190, 18, 18);
+    font-size: 12px;
+}
+
+/* IMAGENES */
+.img-error {
+    max-width: 40%;
+    height: auto;
+    border-radius: 50%;
+  }
+
+
+.imagen-redonda {
+    max-width: 80%;
+    border-radius: 10%; 
+    transition: transform 0.5s ease; 
+    padding: 1.0rem;
+    text-align: center;
+}
+
+.imagen-redonda:hover {
+    transform: scale(1.1);
+}
